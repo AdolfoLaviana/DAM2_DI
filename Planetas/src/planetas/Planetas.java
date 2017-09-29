@@ -7,8 +7,11 @@ package planetas;
 
 import planetas.dto.Planeta;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -69,6 +72,20 @@ public class Planetas {
             System.out.println("Mayores de 30: "+mayores30);
             System.out.println("Excentricidad nula: "+excentricidadnula);
             System.out.println("Kepler:"+kepler);
+            
+            //Ordenamos la lista
+            listaPlanetas.sort(new Comparator<Planeta>() {
+                @Override
+                public int compare(Planeta o1, Planeta o2) {
+                    return Double.compare(o1.getEje(),o2.getEje());
+                }
+            });
+            
+            
+            CSVWriter writer = new CSVWriter(new FileWriter("exoplanetasordenados.csv"),',',CSVWriter.NO_QUOTE_CHARACTER);
+            for (Planeta planeta : listaPlanetas)
+                writer.writeNext(planeta.toStringArray());
+            
             
         }
         catch (Throwable e)

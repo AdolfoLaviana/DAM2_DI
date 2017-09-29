@@ -45,7 +45,15 @@ public class Planeta
     }
     
     
-    
+    public String[] toStringArray()
+    {
+        String[] s = new String[4];
+        s[0] = nombre;
+        s[1] = eje == -1 ? "" : Double.toString(eje);
+        s[2] = periodo == -1 ? "" : Double.toString(periodo);
+        s[3] = excentricidad == -1 ? "" : Double.toString(excentricidad);
+        return s;
+    }
     
     
 }
